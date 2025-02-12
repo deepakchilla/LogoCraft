@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up to Kits</title>
+    <link rel="icon" type="image/x-icon" href="https://d13loartjoc1yn.cloudfront.net/upload/institute/logo/medium/130326100953_kits.jpg">
+    <script src="https://kit.fontawesome.com/b5c7b9251d.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+        /* Background with reduced blur */
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 50, 0.6), rgba(0, 0, 50, 0.6)), 
+                              url(https://cdn.wallpapersafari.com/4/61/9r7tiN.jpg);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        /* Logo in the top-left corner */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 120px;
+            height: auto;
+        }
+        /* Signup form placed on the left */
+        .form-box {
+            width: 90%;
+            max-width: 450px;
+            position: absolute;
+            top: 50%;
+            left: 10%; /* Moved to left */
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 50px 60px 70px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .form-box h1 {
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: #3c00a0;
+            position: relative;
+        }
+        .form-box h1::after {
+            content: '';
+            width: 30px;
+            height: 4px;
+            border-radius: 3px;
+            background-color: #007BFF;
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .input-field {
+            background: #eaeaea;
+            margin: 15px 0;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            transition: max-height 0.5s;
+            overflow: hidden;
+            padding: 10px;
+        }
+        input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 10px;
+        }
+        .input-field i {
+            color: #666;
+            margin-right: 10px;
+        }
+        .btn-field {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .btn-field button {
+            width: 100%;
+            background: #007BFF;
+            color: white;
+            height: 40px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-field button:hover {
+            background: #0056b3;
+        }
+        .message {
+            color: #3c00a0;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        /* Already have an account? */
+        .already-account {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .already-account a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .already-account a:hover {
+            text-decoration: underline;
+        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .form-box {
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <img src="" alt="KITS Logo" class="logo">
+        
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <form id="signupForm">
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="name" id="nameInput" placeholder="Full Name" required>
+                </div>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" name="email" id="emailInput" placeholder="Email" required>
+                </div>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-mobile"></i>
+                    <input type="text" name="mobile" id="mobileInput" placeholder="Mobile Number" required>
+                </div>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password" id="passwordInput" placeholder="Password" required>
+                </div>
+
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="confirmPassword" id="confirmPasswordInput" placeholder="Confirm Password" required>
+                </div>
+
+                <div class="btn-field">
+                    <button type="button" id="signupBtn" onclick="registerUser(event)">Sign Up</button>
+                </div>
+
+                <!-- Already have an account link -->
+                <p class="already-account">Already have an account? <a href="loginpagethor.html">Login here</a></p>
+            </form>
+
+            <div class="message" id="responseMessage" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        async function registerUser(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("nameInput").value;
+            const email = document.getElementById("emailInput").value;
+            const mobile = document.getElementById("mobileInput").value;
+            const password = document.getElementById("passwordInput").value;
+            const confirmPassword = document.getElementById("confirmPasswordInput").value;
+
+            const messageElement = document.getElementById("responseMessage");
+            if (password !== confirmPassword) {
+                messageElement.style.display = "block";
+                messageElement.style.color = "red";
+                messageElement.textContent = "Passwords do not match!";
+                return;
+            }
+
+            const data = { name, email, mobile, password };
+
+            try {
+                const response = await fetch("http://localhost:2050/user/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    messageElement.style.display = "block";
+                    messageElement.style.color = "green";
+                    messageElement.textContent = "Signup successful! Please log in.";
+                } else {
+                    messageElement.style.display = "block";
+                    messageElement.style.color = "red";
+                    messageElement.textContent = result.message || "Signup failed.";
+                }
+            } catch (error) {
+                messageElement.style.display = "block";
+                messageElement.style.color = "red";
+                messageElement.textContent = "An error occurred. Try again later.";
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
