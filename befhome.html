@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Design Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-blur {
+            background: url("spidey.jpeg") no-repeat center center/cover;
+            filter: blur(8px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* 3D Text Animation */
+        .animated-text {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            animation: float 5s infinite ease-in-out alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-10px) scale(1.05); }
+        }
+    </style>
+</head>
+<body class="relative text-white flex flex-col items-center justify-center h-screen bg-black">
+    
+    <!-- Blurry Background Image -->
+    <div class="bg-blur"></div>
+
+    <!-- Header -->
+    <header class="absolute top-0 w-full flex justify-between items-center p-5">
+        <img src="your-logo.png" alt="Logo" class="h-10">
+        <div>
+            <a href="signupavng.html" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-md">Sign Up</a>
+            <a href="loginpagethor.html" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-md">Login</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="text-center">
+        <!-- 3D Animated Text -->
+        <h2 class="animated-text mb-6">Welcome to Logo Craft</h2>
+
+        <h1 class="text-4xl font-bold mb-4">Smarter Creativity, Faster Designs</h1>
+        <p class="text-lg mb-6">Everything you need, from AI-powered image generation to advanced editing tools.</p>
+        
+        <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+            <a href="loginpagethor.html" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-md text-white w-48 text-center">Start</a>
+            <a href="home.html" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-md text-white w-48 text-center">Use Free Trial</a>
+        </div>
+    </div>
+
+</body>
+</html>
